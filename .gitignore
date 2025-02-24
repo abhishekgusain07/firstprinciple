@@ -22,3 +22,5 @@ yarn-error.log*
 
 # Next.js/Turbopack
 .turbo/
+# clerk configuration (can include secrets)
+/.clerk/

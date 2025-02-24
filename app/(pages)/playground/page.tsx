@@ -336,6 +336,9 @@ export default function PlaygroundPage() {
                     <SelectItem value="deepseek:deepseek-chat">
                       deepseek chat
                     </SelectItem>
+                    <SelectItem value="gemini-2.0-flash-exp">
+                      Gemini 2.0 Flash Exp
+                    </SelectItem>
                     <SelectItem value="deepseek:deepseek-coder">
                       deepseek coder
                     </SelectItem>
