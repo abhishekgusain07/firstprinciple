@@ -1,6 +1,5 @@
 import { registry } from "@/utils/registry";
 import { groq } from "@ai-sdk/groq";
-import { google } from '@ai-sdk/google';
 import {
   extractReasoningMiddleware,
   streamText,
@@ -22,7 +21,6 @@ export async function POST(req: Request) {
     systemPrompt,
   } = await req.json();
 
-  console.log("model ", model);
   const defaultSystemPrompt = `
     You are an advanced AI assistant in an interactive playground environment. Your primary goals are:
     1. Knowledge & Assistance: Share knowledge and provide assistance across a wide range of topics
@@ -46,15 +44,12 @@ export async function POST(req: Request) {
     model: groq("deepseek-r1-distill-llama-70b"),
     middleware: extractReasoningMiddleware({ tagName: "think" }),
   });
-  let finalModel = model;
-  if (!finalModel || model === "deepseek:deepseek-reasoner") {
-    finalModel = enhancedModel;
-  }else if( model === "google:google-reasoner"){
-    finalModel = google("gemini-2.0-flash-exp");
-  }
 
   const result = streamText({
-    model:finalModel,
+    model:
+      model === "deepseek:deepseek-reasoner"
+        ? enhancedModel
+        : registry.languageModel(model),
     messages,
     temperature: temperature || 0.7,
     maxTokens: maxTokens || 1000,

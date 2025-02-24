@@ -17,8 +17,7 @@ const AI_MODELS = [
   { id: "gpt-4", name: "GPT-4" },
   { id: "gpt-3.5-turbo", name: "GPT-3.5 Turbo" },
   { id: "claude-2", name: "Claude 2" },
-  { id: "gemini-2.0-flash", name:"Gemini 2.0 Flash" },
-
+  { id: "Gemini-2.0-flash", name:"Gemini-2.0-flash" },
 ]
 
 type Message = {
